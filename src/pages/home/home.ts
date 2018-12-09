@@ -20,9 +20,19 @@ export class HomePage {
   public perigo = false
   public tipo_pele:string = ""
   public dados_sensor:any = ""
+  public hora_inicio:any = ""
 
   constructor(public navCtrl: NavController, public http: HttpClient, private events: Events, private geolocation: Geolocation, private storage: Storage) {
 
+  }
+
+  calcHomeInicio() {
+    if (this.estaNoSol) {
+      var event = new Date(this.estaNoSol);
+      this.hora_inicio = event.toLocaleTimeString('en-US');
+    } else {
+      this.hora_inicio = ""
+    }
   }
 
   public getTipoPele() {
@@ -69,6 +79,7 @@ export class HomePage {
 
     this.storage.get('estaNoSol').then((val) => {
       this.estaNoSol = val
+      this.calcHomeInicio()
     });
   }
 
@@ -94,27 +105,30 @@ export class HomePage {
   }
 
   StartTimer(t){
-    setTimeout(x =>
-      {
+    if (this.estaNoSol != '') {
+      setTimeout(x =>
+        {
 
-          let end_date = this.tempo_maximo*60000 + this.estaNoSol - Date.now()
+            let end_date = this.tempo_maximo*60000 + this.estaNoSol - Date.now()
 
-          // console.log(end_date)
+            // console.log(end_date)
 
-          if (end_date < 0) {
-            this.perigo = true
-            // alert('Tempo esgotado procure um safepoint.')
-          } else {
-            this.StartTimer(t);
-          }
+            if (end_date < 0) {
+              this.perigo = true
+              // alert('Tempo esgotado procure um safepoint.')
+            } else {
+              this.StartTimer(t);
+            }
 
-      }, 1000);
+        }, 1000);
+      }
   }
 
   getDataFromPi() {
     let path ='http://192.168.0.106:8000/dados.txt'
     this.http.get(path).subscribe(data => {
-      console.debug(data)
+      this.dados_sensor = data
+      //console.debug(data)
     });
   }
 

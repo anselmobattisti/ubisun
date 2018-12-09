@@ -9,25 +9,37 @@
   <ion-card>
       <ion-card-header>
         <p>Olá <strong>{{ nome }}</strong></p>
-
-        {{tempo_maximo}} ---- {{ tipo_pele }}
-
-        <!-- <ion-card-title *ngIf="isOnSun()">
-          Você está no sol deste as
-          <strong>{{ hora_inicio }}</strong>
-        </ion-card-title> -->
-
       </ion-card-header>
 
       <ion-card-content>
 
-        dados do sensores: {{ dados_sensor }}
+        <p>Você definiu <strong>{{ tempo_maximo }}</strong> minutos como seu tempo máximo de exposição ao sol.</p>
+        <p>E você definiu que sua pela é: <strong>{{ getTipoPele() }}</strong> </p>
 
-        O tempo máximo de esposição que você definiu foi <strong>{{ tempo_maximo }}</strong> minutos.
+        <p *ngIf="hora_inicio">Você está no sol desde: <strong>{{ hora_inicio }}</strong></p>
+      </ion-card-content>
+    </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        <strong>Dados dos Sensores</strong>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>Humidade: {{ dados_sensor.hum }}</ion-item>
+          <ion-item>Temp: {{ dados_sensor.tmp }}</ion-item>
+          <ion-item>Lum: {{ dados_sensor.lum }}</ion-item>
+        </ion-list>
+
+
       </ion-card-content>
     </ion-card>
 
     <ion-card>
+      <ion-card-header>
+        <strong>Dados GPS</strong>
+      </ion-card-header>
       <ion-card-content>
           <ion-list>
             <ion-item>Sua latitude: {{ cords['lat'] }}</ion-item>
@@ -44,7 +56,7 @@
 <ion-content  padding *ngIf="perigo">
   <ion-card class="perigo">
     <ion-card-header>
-      <ion-card-title *ngIf="isOnSun()">
+      <ion-card-title>
         SEU TEMPO LIMITE ESGOTOU-SE
       </ion-card-title>
     </ion-card-header>
