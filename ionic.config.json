@@ -1,5 +1,7 @@
 {
   "name": ".\\ubisunapp\\",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

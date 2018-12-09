@@ -1,17 +1,57 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title>UbiSun</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding *ngIf="!perigo">
+
+  <ion-card>
+      <ion-card-header>
+        <p>Olá <strong>{{ nome }}</strong></p>
+
+        {{tempo_maximo}} ---- {{ tipo_pele }}
+
+        <!-- <ion-card-title *ngIf="isOnSun()">
+          Você está no sol deste as
+          <strong>{{ hora_inicio }}</strong>
+        </ion-card-title> -->
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        dados do sensores: {{ dados_sensor }}
+
+        O tempo máximo de esposição que você definiu foi <strong>{{ tempo_maximo }}</strong> minutos.
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+          <ion-list>
+            <ion-item>Sua latitude: {{ cords['lat'] }}</ion-item>
+            <ion-item>Sua longitude: {{ cords['lng'] }}</ion-item>
+            <ion-item>Cor de pele: {{ getTipoPele() }}</ion-item>
+          </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <button (click) = "getPosition()" ion-button>GPS aqui</button>
+
 </ion-content>
+
+<ion-content  padding *ngIf="perigo">
+  <ion-card class="perigo">
+    <ion-card-header>
+      <ion-card-title *ngIf="isOnSun()">
+        SEU TEMPO LIMITE ESGOTOU-SE
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Vá para um safepoint imediatamente!
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+

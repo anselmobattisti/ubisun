@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Configurações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input [(ngModel)]="nome" id="nome" type="text" value=""></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Tempo Máximo de Sol (minutos)</ion-label>
+          <ion-input [(ngModel)]="tempo_maximo" type="numeric"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-list radio-group [(ngModel)]="tipo_pele">
+
+          <ion-list-header><strong>Tipo da Pele</strong></ion-list-header>
+
+          <ion-item>
+            <ion-label>Branca - queima sempre</ion-label>
+            <ion-radio [value]="1"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Morena Clara - bronzeia e queima</ion-label>
+            <ion-radio [value]="2"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Morena Escura - bronzeia e às vezes queima</ion-label>
+            <ion-radio [value]="3"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Negra - bronzeia e raramente queima</ion-label>
+            <ion-radio [value]="4"></ion-radio>
+          </ion-item>
+
+      </ion-list>
+
+      <button (click) = "salvarConfiguracoes()" ion-button>Salvar</button>
+
+</ion-content>

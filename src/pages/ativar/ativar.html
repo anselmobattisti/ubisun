@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item *ngIf="hora_inicio">
+      <ion-label>Você está ao sol desde:</ion-label>
+    </ion-item>
+    <ion-item *ngIf="hora_inicio">
+      <ion-label>{{ hora_inicio }}</ion-label>
+    </ion-item>
+
+    <ion-content>
+        <button
+          ion-button
+          color="danger"
+          expand="block"
+          (click)="fuiProSol()">Fui para sol!
+        </button>
+
+        <button
+          ion-button
+          color="success"
+          expand="block"
+          (click)="saiDoSol()">Sai do sol!
+        </button>
+    </ion-content>
+
+</ion-content>
