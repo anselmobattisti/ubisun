@@ -28,12 +28,14 @@ export class AtivarPage {
   }
 
   fuiProSol() {
+    alert("Você está ao sol!")
     this.estaNoSol = Date.now()
     this.calcHomeInicio()
     this.storage.set('estaNoSol', this.estaNoSol)
   }
 
   saiDoSol() {
+    alert("Você não está ao sol!")
     this.hora_inicio = ''
     this.estaNoSol = ''
     this.storage.set('estaNoSol', this.estaNoSol)

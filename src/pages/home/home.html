@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding *ngIf="!perigo">
+<ion-content *ngIf="!perigo">
 
   <ion-card>
       <ion-card-header>
@@ -27,9 +27,9 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item>Humidade: {{ dados_sensor.hum }}</ion-item>
-          <ion-item>Temp: {{ dados_sensor.tmp }}</ion-item>
-          <ion-item>Lum: {{ dados_sensor.lum }}</ion-item>
+          <!-- <ion-item>Humidade: {{ dados_sensor.hum }}</ion-item>
+          <ion-item>Temp: {{ dados_sensor.tmp }}</ion-item> -->
+          <ion-item>Luminosidade: {{ dados_sensor.lum }}</ion-item>
         </ion-list>
 
 
@@ -46,22 +46,28 @@
             <ion-item>Sua longitude: {{ cords['lng'] }}</ion-item>
             <ion-item>Cor de pele: {{ getTipoPele() }}</ion-item>
           </ion-list>
+
+          <button (click) = "getPosition()" ion-button>Solicitar Dados GPS</button>
       </ion-card-content>
     </ion-card>
 
-    <button (click) = "getPosition()" ion-button>GPS aqui</button>
-
 </ion-content>
 
-<ion-content  padding *ngIf="perigo">
-  <ion-card class="perigo">
+<ion-content *ngIf="perigo">
+  <br/><br/><br/><br/>
+  <ion-card>
     <ion-card-header>
       <ion-card-title>
-        SEU TEMPO LIMITE ESGOTOU-SE
+        SEU TEMPO AO SOL TERMINOU!
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Vá para um safepoint imediatamente!
+
+      <p>Vá para um safepoint imediatamente!</p>
+
+      <a href="https://www.google.com/maps/@-22.8987908,-43.1361921,16z">
+        Abrir Mapa
+      </a>
     </ion-card-content>
   </ion-card>
 

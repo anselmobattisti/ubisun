@@ -19,6 +19,7 @@ export class ConfigPage {
   public nome:string = ""
   public tempo_maximo:number = 0
   public tipo_pele:string = ""
+  public ip_sensor:string = ""
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
@@ -32,6 +33,7 @@ export class ConfigPage {
     this.storage.set('nome', this.nome);
     this.storage.set('tempo_maximo', this.tempo_maximo);
     this.storage.set('tipo_pele', this.tipo_pele);
+    this.storage.set('ip_sensor', this.ip_sensor);
 
     alert('Dados salvos com sucesso.')
   }
@@ -48,6 +50,10 @@ export class ConfigPage {
 
     this.storage.get('tipo_pele').then((val) => {
       this.tipo_pele = val
+    });
+
+    this.storage.get('ip_sensor').then((val) => {
+      this.ip_sensor = val
     });
   }
 
